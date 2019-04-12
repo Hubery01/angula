@@ -50,15 +50,15 @@ export class DetailPage {
   add(){
     console.log(this.pid)
     var url = 'http://localhost:8080/cart/add?buyCount=1&lid='+this.pid
-    this.myH.get(url).subscribe((result:any)=>{
+    this.myH.get(url,{withCredentials:true}).subscribe((result:any)=>{
       console.log(result)
       if(result.code==300){
         this.navCtrl.push(LoginPage)
       }else if(result.code==200){
-        var myT = this.toast.create({message:'success'})
+        var myT = this.toast.create({message:'success',duration:1500})
         myT.present()
       }else{
-        var myT1 = this.toast.create({message:'defaet'})
+        var myT1 = this.toast.create({message:'defaet',duration:1500})
         myT1.present()
       }
     })
